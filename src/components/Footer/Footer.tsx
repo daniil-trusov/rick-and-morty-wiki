@@ -3,25 +3,25 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="mb-4 w-full bg-gray-100">
+    <footer className="mt-8 w-full bg-gray-100 px-4 pt-6 pb-12">
       <div
         aria-label="Footer navigation"
-        className="mx-auto flex max-w-[1200px] items-center justify-around px-4 py-3 text-gray-500"
+        className="mx-auto flex max-w-[1200px] flex-col items-center justify-center gap-x-8 gap-y-4 text-center text-lg text-gray-500 md:flex-row"
       >
+        <span>© Daniil Trusov | 2025</span>
+
         <Link
-          className="font-sans text-2xl font-bold hover:text-gray-700 hover:underline"
+          className="hover:text-gray-700 hover:underline"
           href="https://github.com/daniil-trusov/rick-and-morty-wiki"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Github
+          Github repo
         </Link>
 
-        <span>Daniil Trusov, 2025</span>
-
         <button
-          className="text-xl hover:text-gray-700"
-          onClick={() => {}}
+          className="hover:text-gray-700"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           aria-label="Back to top"
         >
           Back to top ↑

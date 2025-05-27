@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const pageLinks = [
@@ -10,12 +11,14 @@ const pageLinks = [
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+  console.log(pathname);
 
   return (
     <header className="mb-4 w-full bg-gray-100">
       <nav
         aria-label="Main navigation"
-        className="mx-auto flex max-w-[1200px] items-center justify-between px-4 py-3"
+        className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-between px-4 py-3 lg:flex-nowrap"
       >
         <Link className="font-sans text-2xl font-bold" href="/">
           <span className="text-blue-600">Rick & Morty</span> Wiki
@@ -31,14 +34,18 @@ export default function Header() {
         </button>
 
         <div
-          className={`${isOpen ? "block" : "hidden"} w-full lg:flex lg:w-auto lg:items-center`}
+          className={`overflow-hidden transition-[max-height,opacity] duration-500 ease-in-out ${isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"} w-full lg:flex lg:max-h-full lg:w-auto lg:items-center lg:opacity-100`} //{`${isOpen ? "block" : "hidden"} w-full lg:flex lg:w-auto lg:items-center`}
         >
           <ul className="mt-4 flex flex-col text-lg text-gray-500 lg:mt-0 lg:flex-row lg:gap-6">
             {pageLinks.map(({ name, link }) => (
               <li key={name}>
                 <Link
                   href={link}
-                  className="transition-colors duration-200 hover:text-gray-700 hover:underline"
+                  className={`transition-colors duration-200 ${
+                    pathname === link
+                      ? "pointer-events-none border-b-2 border-blue-600 pb-0.5 text-blue-600"
+                      : "text-gray-500 hover:text-gray-700"
+                  }`}
                 >
                   {name}
                 </Link>
