@@ -6,12 +6,12 @@ export default function Footer() {
     <footer className="mt-8 w-full bg-gray-100 px-4 pt-6 pb-12">
       <div
         aria-label="Footer navigation"
-        className="mx-auto flex max-w-[1200px] flex-col items-center justify-center gap-x-8 gap-y-4 text-center text-lg text-gray-500 md:flex-row"
+        className="mx-auto flex max-w-[1200px] flex-col items-center justify-center gap-x-8 gap-y-4 text-center text-gray-500 md:flex-row"
       >
         <span>© Daniil Trusov | 2025</span>
 
         <Link
-          className="hover:text-gray-700 hover:underline"
+          className="hover:text-gray-700"
           href="https://github.com/daniil-trusov/rick-and-morty-wiki"
           target="_blank"
           rel="noopener noreferrer"

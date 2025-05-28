@@ -36,14 +36,14 @@ export default function Header() {
         <div
           className={`overflow-hidden transition-[max-height,opacity] duration-500 ease-in-out ${isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"} w-full lg:flex lg:max-h-full lg:w-auto lg:items-center lg:opacity-100`} //{`${isOpen ? "block" : "hidden"} w-full lg:flex lg:w-auto lg:items-center`}
         >
-          <ul className="mt-4 flex flex-col text-lg text-gray-500 lg:mt-0 lg:flex-row lg:gap-6">
+          <ul className="mt-4 flex flex-col text-xl text-gray-500 lg:mt-0 lg:flex-row lg:gap-6">
             {pageLinks.map(({ name, link }) => (
               <li key={name}>
                 <Link
                   href={link}
                   className={`transition-colors duration-200 ${
                     pathname === link
-                      ? "pointer-events-none border-b-2 border-blue-600 pb-0.5 text-blue-600"
+                      ? "pointer-events-none font-bold text-blue-600"
                       : "text-gray-500 hover:text-gray-700"
                   }`}
                 >
