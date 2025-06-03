@@ -57,27 +57,31 @@ export default function Home() {
   const pathname = usePathname();
   const [search, setSearch] = useState("");
   const pageTitle = pathname.length > 1 ? pathname.slice(1) : "Characters";
+  const pageCategory = pageTitle.toLowerCase();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
   };
 
-  useEffect(() => {
+  /*useEffect(() => {
     const fetchLocations = async () => {
-      const response = await fetch("https://rickandmortyapi.com/api/location");
-      const data = await response.json();
+      const uniqueSpecies = new Set();
 
-      const uniqueTypes = [...new Set(data.results.map((loc) => loc.type))];
-      console.log(uniqueTypes);
-
-      const uniqueDimensions = [
-        ...new Set(data.results.map((loc) => loc.dimension)),
-      ];
-      console.log(uniqueDimensions);
+      for (let i = 0; i < 42; i++) {
+        const response = await fetch(
+          `https://rickandmortyapi.com/api/character?page=${i}`
+        );
+        const data = await response.json();
+        const species: string[] = data.results.map(
+          (char: Character) => char.species
+        );
+        species.forEach((s) => uniqueSpecies.add(s));
+      }
+      console.log(uniqueSpecies);
     };
 
     fetchLocations();
-  }, []);
+  }, []);*/
 
   return (
     <>
@@ -89,7 +93,7 @@ export default function Home() {
             <form onSubmit={handleSubmit}>
               <Search search={search} onSearch={setSearch} />
 
-              <Filter />
+              <Filter category={pageCategory} />
             </form>
           </div>
 
