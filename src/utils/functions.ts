@@ -1,20 +1,22 @@
 import { FilterRecord } from "./types";
 
-export function getFiltersFromSearchParams(params: {
+export function parseSearchParams(searchParams: {
   [key: string]: string | string[] | undefined;
-}): FilterRecord {
-  const filters: FilterRecord = {};
+}) {
+  let search = "";
+  const selectedFilters: FilterRecord = {};
 
-  for (const key in params) {
+  for (const key in searchParams) {
+    const value = searchParams[key];
+
+    if (!value) continue;
+
     if (key === "search") {
-      continue;
-    }
-    const value = params[key];
-    if (typeof value === "string") {
-      filters[key] = value;
-    } else if (Array.isArray(value) && value.length > 0) {
-      filters[key] = value[0];
+      search = Array.isArray(value) ? value[0] : value;
+    } else {
+      selectedFilters[key] = Array.isArray(value) ? value[0] : value;
     }
   }
-  return filters;
+
+  return { search, selectedFilters };
 }

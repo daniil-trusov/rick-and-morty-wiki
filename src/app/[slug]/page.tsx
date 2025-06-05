@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { Character } from "@/utils/types";
 //import { getCharacters, getLocations, getEpisodes } from "@/services/api";
 import { getPageWithFilters } from "@/utils/pageUtils";
-import { getFiltersFromSearchParams } from "@/utils/functions";
+import { parseSearchParams } from "@/utils/functions";
 
 import ControlsPanel from "@/components/ControlsPanel/ControlsPanel";
 import Card from "@/components/Card/Card";
@@ -55,19 +55,19 @@ const characters: Character[] = [
 
 type Props = {
   params: { slug: string };
-  searchParams: Record<string, string>;
+  searchParams: { [key: string]: string | string[] | undefined };
 };
 
 export default async function ResourcePage({ params, searchParams }: Props) {
-  const { slug } = params;
+  const slug = params.slug;
 
   const { page, filters } = getPageWithFilters(slug);
-  const search = searchParams.search;
-  const selectedFilters = getFiltersFromSearchParams(searchParams);
 
   if (!page) {
     return notFound();
   }
+
+  const { search, selectedFilters } = parseSearchParams(searchParams);
 
   return (
     <>

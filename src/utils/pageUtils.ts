@@ -13,13 +13,13 @@ const pageMap = pageConfig.reduce<Record<string, Page>>((acc, page) => {
   return acc;
 }, {});
 
-export const getPageByPath = (pathname: string): Page => {
-  const key = pathname.replace(/^\//, "") || pageConfig[0].path;
+export const getPageBySlug = (slug: string): Page => {
+  const key = slug.replace(/^\//, "") || pageConfig[0].path;
   return pageMap[key];
 };
 
 export function getPageWithFilters(slug: string): PageWithFilters {
-  const page = getPageByPath(slug);
+  const page = getPageBySlug(slug);
 
   const filters = getFiltersForResource(page.resource);
   return { page, filters };
