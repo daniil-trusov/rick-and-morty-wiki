@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="flex min-h-screen flex-col antialiased">
         <Header />
-        <main className="max-w-[1200px] min-w-[320px] flex-grow px-4">
+        <main className="mx-auto max-w-[1200px] min-w-[320px] flex-grow px-4">
           {children}
         </main>
 

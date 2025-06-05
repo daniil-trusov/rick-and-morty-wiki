@@ -1,10 +1,10 @@
-"use client";
-import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { notFound } from "next/navigation";
+import { Character } from "@/utils/types";
+//import { getCharacters, getLocations, getEpisodes } from "@/services/api";
+import { getPageWithFilters } from "@/utils/pageUtils";
+import { getFiltersFromSearchParams } from "@/utils/functions";
 
-import { Character } from "@/utils/Type";
-import Search from "@/components/Search/Search";
-import Filter from "@/components/Filter/Filter";
+import ControlsPanel from "@/components/ControlsPanel/ControlsPanel";
 import Card from "@/components/Card/Card";
 
 const characters: Character[] = [
@@ -53,51 +53,37 @@ const characters: Character[] = [
   },
 ];
 
-export default function Home() {
-  const pathname = usePathname();
-  const [search, setSearch] = useState("");
-  const pageTitle = pathname.length > 1 ? pathname.slice(1) : "Characters";
-  const pageCategory = pageTitle.toLowerCase();
+type Props = {
+  params: { slug: string };
+  searchParams: Record<string, string>;
+};
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-  };
+export default async function ResourcePage({ params, searchParams }: Props) {
+  const { slug } = params;
 
-  /*useEffect(() => {
-    const fetchLocations = async () => {
-      const uniqueSpecies = new Set();
+  const { page, filters } = getPageWithFilters(slug);
+  const search = searchParams.search;
+  const selectedFilters = getFiltersFromSearchParams(searchParams);
 
-      for (let i = 0; i < 42; i++) {
-        const response = await fetch(
-          `https://rickandmortyapi.com/api/character?page=${i}`
-        );
-        const data = await response.json();
-        const species: string[] = data.results.map(
-          (char: Character) => char.species
-        );
-        species.forEach((s) => uniqueSpecies.add(s));
-      }
-      console.log(uniqueSpecies);
-    };
-
-    fetchLocations();
-  }, []);*/
+  if (!page) {
+    return notFound();
+  }
 
   return (
     <>
-      <h1 className="mb-6 text-center text-2xl font-bold">{pageTitle}</h1>
+      <h1 className="mb-6 text-center text-2xl font-bold">{page.title}</h1>
 
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-col gap-6 lg:flex-row">
           <div className="w-full lg:w-1/3">
-            <form onSubmit={handleSubmit}>
-              <Search search={search} onSearch={setSearch} />
-
-              <Filter category={pageCategory} />
-            </form>
+            <ControlsPanel
+              filters={filters}
+              initialSearch={search}
+              initialFilters={selectedFilters}
+            />
           </div>
 
-          <div className="grid-cols-1 lg:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
             {characters.map((character) => (
               <Card key={character.id} character={character} />
             ))}

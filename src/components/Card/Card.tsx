@@ -1,4 +1,4 @@
-import { Character } from "@/utils/Type";
+import { Character } from "@/utils/types";
 import Image from "next/image";
 import Link from "next/link";
 
