@@ -1,0 +1,17 @@
+[
+  {
+    "slug": "/characters",
+    "title": "Characters",
+    "resourceType": "character"
+  },
+  {
+    "slug": "/locations",
+    "title": "Locations",
+    "resourceType": "location"
+  },
+  {
+    "slug": "/episodes",
+    "title": "Episodes",
+    "resourceType": "episode"
+  }
+]

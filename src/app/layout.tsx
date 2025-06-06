@@ -3,6 +3,8 @@ import "./globals.css";
 
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
+import clsx from "clsx";
+import { MAX_CONTENT_SIZE, MIN_CONTENT_SIZE } from "@/utils/constants";
 
 export const metadata: Metadata = {
   title: "Rick & Morty Wiki",
@@ -18,7 +20,13 @@ export default function RootLayout({
     <html lang="en">
       <body className="flex min-h-screen flex-col antialiased">
         <Header />
-        <main className="mx-auto max-w-[1200px] min-w-[320px] flex-grow px-4">
+        <main
+          className={clsx(
+            "mx-auto flex-grow px-4",
+            `min-w-[${MIN_CONTENT_SIZE}px]`,
+            `max-w-[${MAX_CONTENT_SIZE}px]`
+          )}
+        >
           {children}
         </main>
 

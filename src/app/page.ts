@@ -1,6 +1,12 @@
-import { pageConfig } from "@/configs/pageConfig";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
+import pageSchema from "./data/pageSchema.json";
 
-export default function Home() {
-  redirect(pageConfig[0].path);
+export default function HomePage() {
+  const firstSlug = pageSchema[0]?.slug;
+
+  if (!firstSlug) {
+    return notFound();
+  }
+
+  redirect(firstSlug);
 }

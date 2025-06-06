@@ -19,25 +19,49 @@ export type Character = {
   created: string;
 };
 
+export type Location = {
+  id: number;
+  name: string;
+  type: string;
+  dimension: string;
+  residents: string[];
+  url: string;
+  created: string;
+};
+
+export type Episode = {
+  id: number;
+  name: string;
+  air_date: string;
+  episode: string;
+  characters: string[];
+  url: string;
+  created: string;
+};
+
 export type ResourceType = "character" | "location" | "episode";
 
-export type Page = {
-  path: string;
+export type PageInfo = {
+  slug: string;
   title: string;
-  resource: ResourceType;
+  resourceType: ResourceType;
 };
 
-export type FilterDefinition = {
-  resource: ResourceType;
-  paramName: string;
+export type FilterOption = {
+  key: string;
   label: string;
-  options: string[];
 };
 
-export type SectionState = {
-  isFirst: boolean;
-  isLast: boolean;
-  name: string;
+export type FilterCategory = {
+  resourceType: ResourceType;
+  key: string;
+  label: string;
+  options: FilterOption[];
 };
 
-export type FilterRecord = Record<string, string>;
+export type ActiveFilters = Record<string, string>;
+
+export type FilterConfig = {
+  resourceType: ResourceType;
+  categories: FilterCategory[];
+};

@@ -1,0 +1,84 @@
+[
+  {
+    "resourceType": "character",
+    "key": "status",
+    "label": "Status",
+    "options": [
+      { "key": "alive", "label": "Alive" },
+      { "key": "dead", "label": "Dead" },
+      { "key": "unknown", "label": "Unknown" }
+    ]
+  },
+  {
+    "resourceType": "character",
+    "key": "species",
+    "label": "Species",
+    "options": [
+      { "key": "human", "label": "Human" },
+      { "key": "alien", "label": "Alien" },
+      { "key": "humanoid", "label": "Humanoid" },
+      { "key": "unknown", "label": "Unknown" },
+      { "key": "poopybutthole", "label": "Poopybutthole" },
+      { "key": "mythological creature", "label": "Mythological Creature" },
+      { "key": "animal", "label": "Animal" },
+      { "key": "robot", "label": "Robot" },
+      { "key": "cronenberg", "label": "Cronenberg" },
+      { "key": "disease", "label": "Disease" }
+    ]
+  },
+  {
+    "resourceType": "character",
+    "key": "gender",
+    "label": "Gender",
+    "options": [
+      { "key": "male", "label": "Male" },
+      { "key": "female", "label": "Female" },
+      { "key": "genderless", "label": "Genderless" },
+      { "key": "unknown", "label": "Unknown" }
+    ]
+  },
+  {
+    "resourceType": "location",
+    "key": "type",
+    "label": "Type",
+    "options": [
+      { "key": "planet", "label": "Planet" },
+      { "key": "cluster", "label": "Cluster" },
+      { "key": "space station", "label": "Space station" },
+      { "key": "microverse", "label": "Microverse" },
+      { "key": "tv", "label": "TV" },
+      { "key": "resort", "label": "Resort" },
+      { "key": "fantasy town", "label": "Fantasy town" },
+      { "key": "dream", "label": "Dream" }
+    ]
+  },
+  {
+    "resourceType": "location",
+    "key": "dimension",
+    "label": "Dimension",
+    "options": [
+      { "key": "dimension c-137", "label": "Dimension C-137" },
+      { "key": "unknown", "label": "Unknown" },
+      {
+        "key": "post-apocalyptic dimension",
+        "label": "Post-Apocalyptic Dimension"
+      },
+      { "key": "replacement dimension", "label": "Replacement Dimension" },
+      { "key": "cronenberg dimension", "label": "Cronenberg Dimension" },
+      { "key": "fantasy dimension", "label": "Fantasy Dimension" },
+      { "key": "dimension 5-126", "label": "Dimension 5-126" }
+    ]
+  },
+  {
+    "resourceType": "episode",
+    "key": "season",
+    "label": "Season",
+    "options": [
+      { "key": "s01", "label": "S01" },
+      { "key": "s02", "label": "S02" },
+      { "key": "s03", "label": "S03" },
+      { "key": "s04", "label": "S04" },
+      { "key": "s05", "label": "S05" }
+    ]
+  }
+]
