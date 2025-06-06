@@ -2,15 +2,15 @@
 
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { FilterDefinition, FilterRecord } from "@/utils/types";
+import { FilterCategory, ActiveFilters } from "@/utils/types";
 
 import FilterPanel from "./FilterPanel";
 import Search from "./Search";
 
 type Props = {
-  filters: FilterDefinition[];
+  filters: FilterCategory[];
   initialSearch: string;
-  initialFilters: FilterRecord;
+  initialFilters: ActiveFilters;
 };
 
 export default function ControlsPanel({
@@ -20,7 +20,7 @@ export default function ControlsPanel({
 }: Props) {
   const [search, setSearch] = useState(initialSearch);
   const [selectedFilters, setSelectedFilters] =
-    useState<FilterRecord>(initialFilters);
+    useState<ActiveFilters>(initialFilters);
 
   const router = useRouter();
 

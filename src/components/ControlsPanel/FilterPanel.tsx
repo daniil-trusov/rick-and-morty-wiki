@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { FilterDefinition, FilterRecord, SectionState } from "@/utils/types";
+import { FilterCategory, ActiveFilters } from "@/utils/types";
 
-import FilterCategory from "./FilterCategory";
+import FilterSection from "./FilterSection";
+import { getFilterLabel } from "@/app/lib/config";
 
 type Props = {
-  filters: FilterDefinition[];
-  initialFilters: FilterRecord;
-  onFiltersChange: (filters: FilterRecord) => void;
+  filters: FilterCategory[];
+  initialFilters: ActiveFilters;
+  onFiltersChange: (filters: ActiveFilters) => void;
 };
 
 export default function FilterPanel({
@@ -14,14 +15,14 @@ export default function FilterPanel({
   initialFilters,
   onFiltersChange,
 }: Props) {
-  const [selectedFilters, setSelectedFilters] = useState<FilterRecord>(
+  const [selectedFilters, setSelectedFilters] = useState<ActiveFilters>(
     initialFilters || {}
   );
   const [ariaLiveMessage, setAriaLiveMessage] = useState(
     "Filters selected: none"
   );
 
-  const updateSummaryText = (newState: FilterRecord) => {
+  const updateSummaryText = (newState: ActiveFilters) => {
     const summaryText = Object.entries(newState)
       .map(([key, value]) => `${key}: ${value}`)
       .join("; ");
@@ -61,15 +62,21 @@ export default function FilterPanel({
 
       {Object.entries(selectedFilters).length > 0 && (
         <div className="mb-4 flex flex-wrap gap-2">
-          {Object.entries(selectedFilters).map(([key, value]) => (
-            <button
-              key={key}
-              className="rounded-full bg-blue-100 px-3 py-1 text-sm text-blue-800 hover:bg-blue-200"
-              onClick={() => toggleFilter(key, value)}
-            >
-              {key}: {value}
-            </button>
-          ))}
+          {Object.entries(selectedFilters).map((selectedFilter) => {
+            const { categoryLabel, optionLabel } =
+              getFilterLabel(selectedFilter);
+            const [categoryKey, valueKey] = selectedFilter;
+
+            return (
+              <button
+                key={categoryKey}
+                className="rounded-full bg-blue-100 px-3 py-1 text-sm text-blue-800 hover:bg-blue-200"
+                onClick={() => toggleFilter(categoryKey, valueKey)}
+              >
+                {categoryLabel}: {optionLabel}
+              </button>
+            );
+          })}
           <button
             onClick={clearAllFilters}
             className="ml-2 text-sm text-red-500 hover:underline"
@@ -80,20 +87,14 @@ export default function FilterPanel({
       )}
 
       <div id="filterPanel">
-        {filters.map(({ label, paramName: name, options }, index) => {
-          const sectionProps: SectionState = {
-            isFirst: index === 0,
-            isLast: index === filters.length - 1,
-            name,
-          };
+        {filters.map((filterCategory) => {
+          const name = filterCategory.key;
           const selectedOption = selectedFilters[name] || "";
 
           return (
             <React.Fragment key={name}>
-              <FilterCategory
-                section={sectionProps}
-                label={label}
-                options={options}
+              <FilterSection
+                filter={filterCategory}
                 selectedOption={selectedOption}
                 onFilterToggle={(option) => toggleFilter(name, option)}
               />
