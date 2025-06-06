@@ -31,9 +31,7 @@ export function parseSearchParams(searchParams: {
 export function normalizeSearchParams(params: {
   [key: string]: string | string[] | undefined;
 }): Record<string, string> {
-  if (!params || params === undefined) {
-    return {};
-  }
+  if (!params) return {};
 
   const result: Record<string, string> = {};
 
@@ -46,5 +44,11 @@ export function normalizeSearchParams(params: {
       result[key] = value[0];
     }
   }
+
+  if (result.search) {
+    result.name = result.search;
+    delete result.search;
+  }
+
   return result;
 }

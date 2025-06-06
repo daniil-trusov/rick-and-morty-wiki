@@ -71,14 +71,14 @@
   },
   {
     "resourceType": "episode",
-    "key": "season",
+    "key": "episode",
     "label": "Season",
     "options": [
-      { "key": "s01", "label": "S01" },
-      { "key": "s02", "label": "S02" },
-      { "key": "s03", "label": "S03" },
-      { "key": "s04", "label": "S04" },
-      { "key": "s05", "label": "S05" }
+      { "key": "s01", "label": "Season 1" },
+      { "key": "s02", "label": "Season 2" },
+      { "key": "s03", "label": "Season 3" },
+      { "key": "s04", "label": "Season 4" },
+      { "key": "s05", "label": "Season 5" }
     ]
   }
 ]

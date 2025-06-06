@@ -29,7 +29,7 @@ export default async function ResourcePage({ params, searchParams }: Props) {
     <>
       <h1 className="mb-6 text-center text-2xl font-bold">{page.title}</h1>
 
-      <div className="lg:flex-rowmx-auto mx-auto flex min-h-screen max-w-7xl flex-col items-stretch gap-6 px-4 sm:px-6 lg:flex-row">
+      <div className="lg:flex-rowmx-auto mx-auto flex min-h-screen max-w-7xl flex-col gap-6 px-4 sm:px-6 lg:flex-row">
         <div className="h-full w-full lg:w-1/4">
           <ControlsPanel
             filters={filters}
